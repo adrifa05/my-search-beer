@@ -1,6 +1,6 @@
 import { Beer, Options } from './../models/beer';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -23,9 +23,8 @@ export class BeerServiceService {
   public getBeers() {
     this._beersLoaded.next(true);
     this.http
-      .get(this.baseUrl)
+      .get<Beer[]>(this.baseUrl)
       .pipe(
-        tap(console.log),
         tap((beers) => {
           this._beers.next(beers);
           this._beersLoaded.next(true);

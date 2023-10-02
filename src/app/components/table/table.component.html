@@ -1,45 +1,42 @@
-<!-- table -->
-<div class="card mb-3" *ngIf="filteredBeers">
-  <div class="card-body">
-    <table class="table" style="table-layout: fixed">
-      <thead>
-        <tr>
-          <td
-            *ngFor="let item of tableHeader"
-            [attr.colspan]="item === 'description' ? '5' : ''"
-          >
-            {{ item }}
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let beer of filteredBeers">
-          <td>{{ beer.id }}</td>
-          <td>{{ beer.name }}</td>
-          <td>{{ beer.tagline }}</td>
-          <td>{{ beer.firstBrewed }}</td>
-          <td colspan="5">{{ beer.description }}</td>
-          <td>{{ beer.imageURL }}</td>
-          <td>{{ beer.abv }}</td>
-          <td>{{ beer.ibu }}</td>
-          <td>{{ beer.targetFg }}</td>
-          <td>{{ beer.targetOg }}</td>
-          <td>{{ beer.ebc }}</td>
-          <td>{{ beer.srm }}</td>
-          <td>{{ beer.ph }}</td>
-          <td>{{ beer.attenuationLevel }}</td>
-          <td>{{ beer.volume?.value }}</td>
-          <td>{{ beer.boilVolume?.value }}</td>
-          <td>{{ beer.method?.fermentation?.temp?.value }}</td>
-          <td>{{ beer.ingredients?.yeast }}</td>
-          <td>{{ beer.foodPairing?.[0] }}</td>
-          <td>{{ beer.brewersTips }}</td>
-          <td>{{ beer.contributedBy }}</td>
-        </tr>
-        <tr *ngIf="!filteredBeers?.length">
-          <td class="text-center p-5">No records found</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="table-responsive" *ngIf="filteredBeers">
+  <table class="table table-hover">
+    <thead class="table-light">
+      <tr>
+        <td
+          *ngFor="let item of tableHeader"
+          [attr.colspan]="item === 'description' ? '5' : ''"
+        >
+          {{ item }}
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let beer of filteredBeers">
+        <td>{{ beer.id }}</td>
+        <td>{{ beer.name }}</td>
+        <td>{{ beer.tagline }}</td>
+        <td>{{ beer.firstBrewed }}</td>
+        <td colspan="5">{{ beer.description }}</td>
+        <td>{{ beer.imageURL }}</td>
+        <td>{{ beer.abv }}</td>
+        <td>{{ beer.ibu }}</td>
+        <td>{{ beer.targetFg }}</td>
+        <td>{{ beer.targetOg }}</td>
+        <td>{{ beer.ebc }}</td>
+        <td>{{ beer.srm }}</td>
+        <td>{{ beer.ph }}</td>
+        <td>{{ beer.attenuationLevel }}</td>
+        <td>{{ beer.volume?.value }}</td>
+        <td>{{ beer.boilVolume?.value }}</td>
+        <td>{{ beer.method?.fermentation?.temp?.value }}</td>
+        <td>{{ beer.ingredients?.yeast }}</td>
+        <td>{{ beer.foodPairing?.[0] }}</td>
+        <td>{{ beer.brewersTips }}</td>
+        <td>{{ beer.contributedBy }}</td>
+      </tr>
+      <tr *ngIf="!filteredBeers?.length">
+        <td class="text-center p-5">No records found</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

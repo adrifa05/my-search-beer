@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   };
   private getBeersSub: Subscription;
   public tableHeader: string[];
+  public allBeers: Beer[];
   public filteredBeers: Beer[];
 
   constructor(private beerServiceService: BeerServiceService) {}
@@ -39,7 +40,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .pipe(
         tap((beers) => {
           if (beers && beers.length > 0) {
-            this.filteredBeers = beers;
+            this.allBeers = beers;
+            this.filteredBeers = this.allBeers;
           }
         })
       )
@@ -47,11 +49,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   onSearchTermChanged(searchTerm: string) {
-    console.log(searchTerm);
     if (searchTerm.trim() === '') {
       this.getAllBeersList();
     } else {
-      this.filteredBeers = this.filteredBeers.filter((beer) => {
+      this.filteredBeers = this.allBeers.filter((beer) => {
         return Object.values(beer).some(
           (val) =>
             val &&
@@ -63,14 +64,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private getHeaders() {
     if (this.beers$ != null) {
-      console.log(this.beers$);
       this.getBeersSub = this.beers$
         .pipe(
           tap((beers) => {
             if (beers && beers.length > 0) {
-              console.log(beers);
               this.tableHeader = Object.keys(beers[0]);
-              console.log(this.tableHeader);
             }
           })
         )
