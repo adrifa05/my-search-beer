@@ -1,0 +1,17 @@
+.search-container {
+  display: flex;
+  justify-content: center;
+  background-image: url("../../../assets/img/cerveza_fondo.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 10px 20px;
+  height: 200px;
+
+  .search-input {
+    background-color: white;
+    display: flex;
+    margin: auto;
+    width: 500px;
+  }
+}
